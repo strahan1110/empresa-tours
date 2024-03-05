@@ -14,12 +14,13 @@
             String fin=(String)request.getAttribute("fin");
             String ini=(String)request.getAttribute("ini");
             String idcli=(String)request.getAttribute("icli");
+            String idtour=(String)request.getAttribute("tour");
             String placa=(String)request.getAttribute("placa");
             String guia=(String)request.getAttribute("guia");
             String desc=(String)request.getAttribute("desc");
         %>
         <h1>Registrar Servicios</h1>
-            <input type="text" name="tour" value="<%idtour%>">
+            <input type="text" name="tour" value="<%=idtour%>">
             <input type="text" name="id" value="<%=idcli%>">
             <label>Cliente: </label>
             <input type="text" value="<%=cliente%>" readonly><br>

@@ -28,7 +28,13 @@
 
 <body id="page-top">
 <%
+             HttpSession ses=request.getSession();
+           if(ses.getAttribute("cliente")==null){
+                response.sendRedirect("login_usr.jsp");
+            }
+           Usuarios cli=(Usuarios)ses.getAttribute("cliente");
             AgenciaViajes obj=new AgenciaViajes();
+           String nom="Bienvenido mano "+": "+cli.getApe_us()+", "+cli.getNom_us();
         %>
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -73,17 +79,12 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
-                        
-                        <h1>DASHBOARD ADMIN</h1>
-                            
+                    
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
-
-                   
-
-
+                    <h1> <%=nom%></h1>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -91,7 +92,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Lista de Usuarios</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Lista de Admins Registrados</h1>
                     <p class="mb-4">Modifique los datos de los usuarios.</p>
 
                     <!-- DataTales Example -->
@@ -108,7 +109,7 @@
                                 out.print("<tr><td>"+x.getId_us()+"<td>"+x.getNom_us()+"<td>"+x.getApe_us()+"<td>"+x.getDni_us()+"<td>"+x.getFono_us()+"<td>"+x.getMail_us()+
                                         "<td>"+x.getPws_us()+"<td>"+x.getFecha());
                                 %>
-                    <td><a class="btn btn-danger btn-icon-split" href="controlUsuarios?opc=3&id=<%=x.getId_us()%>">Eliminiar</a>
+                    <td><a class="btn btn-danger btn-icon-split" href="controlUsuarios?opc=3&id=<%=x.getId_us()%>">Eliminar</a>
                     <td><a class="btn btn-success btn-icon-split" href="controlUsuarios?opc=2&id=<%=x.getId_us()%>">Modificar</a>
                                 <%
                             }

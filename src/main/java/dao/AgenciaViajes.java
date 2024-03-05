@@ -887,7 +887,7 @@ public class AgenciaViajes implements InterAgencia{
    public void adicionServicio(Servicios a){
      Connection cn=MySQLConexion.getConexion();
      try{
-       String sql="{call adiServicio(?,?,?)}";  
+       String sql="{call adiServicio2(?, ?, ?)}";  
        CallableStatement st=cn.prepareCall(sql);
        st.setString(1, a.getTour_id());
        st.setString(2, a.getId_cli());
@@ -901,7 +901,7 @@ public class AgenciaViajes implements InterAgencia{
    public void delServicio(String id){
      Connection cn=MySQLConexion.getConexion();
      try{
-       String sql="delete from servicios where idservicio=?";  
+       String sql="delete from servicios where idServicio=?";  
        CallableStatement st=cn.prepareCall(sql);
        st.setString(1, id);
        st.executeUpdate();

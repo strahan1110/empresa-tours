@@ -29,6 +29,7 @@
 <body id="page-top">
 <%
             AgenciaViajes obj=new AgenciaViajes();
+            
         %>
     <!-- Page Wrapper -->
     <div id="wrapper">

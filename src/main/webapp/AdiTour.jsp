@@ -86,7 +86,7 @@
                                 
         <form action="controlTour">
             <input  type="hidden" name="opc" value="1">
-        <h1>Adicionar Bus</h1>
+        <h1>Adicionar Tours</h1>
         <label>Descripcion: </label>
         <input type="text" name="des"><br>
         <label>Destino </label>

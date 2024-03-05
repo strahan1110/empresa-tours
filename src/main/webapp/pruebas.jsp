@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Cards</title>
+    <title>Pedidos - Tours - Personales</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,8 +29,10 @@
                 response.sendRedirect("login.jsp");
             }
             Clientes cli=(Clientes)ses.getAttribute("cliente");
+            
             AgenciaViajes obj=new AgenciaViajes();
             String nom="Bienvenido "+cli.getId_cli()+": "+cli.getApe_cli()+", "+cli.getNom_clie();
+           
         %>
         <input type="hidden" value="<%=cli.getId_cli()%>" name="idc">
     <!-- Page Wrapper -->
@@ -52,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="login.jsp">
+                <a class="nav-link" href="portada.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Volver a la web</span></a>
             </li>
@@ -120,9 +122,11 @@
                                         "<td>"+x.getFecha_inicio()+"<td>"+x.getFecha_fin()+"<td>");
                                 %>
                                 <a class="btn btn-circle btn-success" href="controlServicio?opc=5&id=<%=x.getTour_id()%>&idc=<%=cli.getId_cli()%>"></a>
+                                 
                                 <%
                             }
                         %>
+                       
                         </table>
                                             </div>
                                         </div>

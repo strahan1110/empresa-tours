@@ -1,8 +1,21 @@
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="dao.AgenciaViajes,modelo.*" %>
 <!DOCTYPE html>
 <html>
   <head>
+      
+    <style>
+        /* Estilos para la advertencia */
+        .advertencia {
+            background-color: #ffe4e1; /* Color de fondo */
+            border: 1px solid #ff0000; /* Borde */
+            padding: 10px; /* Espaciado interno */
+            text-align: center; /* Alineación del texto */
+            color: #ff0000; /* Color del texto */
+            font-weight: bold; /* Negrita */
+        }
+    </style>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,16 +40,46 @@
 </head>
 
 <body id="page-top">
-        <%
-            HttpSession ses=request.getSession();
-            if(ses.getAttribute("cliente")==null){
-                response.sendRedirect("Login.jsp");
-            }
-            Tours cli=(Tours)ses.getAttribute("cliente");
-            AgenciaViajes obj=new AgenciaViajes();
-            String nom="Cliente "+cli.getId_cli();
+  <%
+    HttpSession ses = request.getSession();
+    Tours cli = null; // Declarar la variable fuera del bloque if
+    String nom = "";
+    String idcli = "";
+    AgenciaViajes obj = null;
+    List<Tours> toursList = null; // Declarar la lista previamente como null
+
+   // if (ses.getAttribute("cliente") == null) {
+    //    response.sendRedirect("login.jsp");
+  //  } else {
+        cli = (Tours) ses.getAttribute("cliente");
+
+        // Verificar si cli o cli.getId_cli() es null o vacío
+        if (cli == null || cli.getId_cli() == null || cli.getId_cli().isEmpty()) {
+        
         %>
-        <input type="hidden" value="<%=cli.getId_cli()%>" name="id">
+            <div class="advertencia">
+                <p></p>
+                <p>No tienes tours guardados. ¡Agrega algunos y disfruta de nuestra oferta!</p>
+            </div>
+    <%
+         //   out.println("<p>NO TIENES TOURS GUARDADOS");
+         //   response.sendRedirect("login.jsp");
+        } else {
+            // Si se recibe la información necesaria, continuar con el procesamiento
+            obj = new AgenciaViajes();
+            nom = "Tours Separados Cliente: " + cli.getId_cli();
+            idcli = cli.getId_cli();
+
+            // Asignar la lista con los tours a la variable toursList
+            toursList = obj.busTourxCli(cli.getId_cli());
+            
+        }
+  //  }
+
+%>
+
+
+        <input type="hidden" value="<%=idcli%>" name="id">
         
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -102,16 +145,48 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                     <table border="1" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-               <tr><th>Id de Tour<th>Descripcion<th>Destino<th>Guia<th>Tarifa<th>Fecha de Inicio<th>Fecha de Finalización
+               <tr><th>Id de Tour<th>Descripcion<th>Destino<th>Guia<th>Tarifa<th>Fecha de Inicio<th>Fecha de Finalización<th>PDF
                         <%
-                            for(Tours x:obj.busTourxCli(cli.getId_cli())){
-                                out.print("<tr><td>"+x.getTour_id()+"<td>"+x.getDescrip_tour()+"<td>"+x.getDestino()+"<td>"+x.getGuia()+"<td>"+x.getTarifa()+
-                                        "<td>"+x.getFecha_inicio()+"<td>"+x.getFecha_fin());
-                            }
-                        %>
+    // Resto del código...
+
+    // Verificar si toursList no es null antes de utilizarlo
+    if (toursList != null) {
+        for (Tours x : toursList) {
+            out.print("<tr><td>" + x.getTour_id() + "<td>" + x.getDescrip_tour() + "<td>" + x.getDestino() +
+                    "<td>" + x.getGuia() + "<td>" + x.getTarifa() + "<td>" + x.getFecha_inicio() +
+                    "<td>" + x.getFecha_fin() + "<td>");
+                    
+                     %>
+                      <a class="btn btn-arrow btn-success" href='controlServicio?opc=8&id=<%=x.getTour_id()%>&idc=<%=cli.getId_cli()%>'>Descargar PDF</a>
+                                <%
+                    
+                    
+        }
+    } else {
+        // Puedes manejar el caso en que toursList es null aquí
+        out.print("<tr><td>" + "--" + "<td>" + "--" + "<td>" +"--" +
+                    "<td>" + "--" + "<td>" + "--" + "<td>" + "--" +
+                    "<td>" + "--" + "</tr>");
+    }
+
+    // Otra parte del código...
+%>
 
             </table>
                         
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">IMPORTANTE</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                    <h1>Para solicitar reembolso o cancelación
+                                    </h1> <p>COMUNICARSE CON ATENCIÓN AL CLIENTE</p>
+                                    <a class="btn btn-arrow btn-success" href="https://wa.link/o73lgd">CONTACTO</a>                       
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dao.AgenciaViajes,modelo.*" %>
 <!DOCTYPE html>
 <html>
      <head>
@@ -19,6 +20,16 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+        
+        <%
+            HttpSession ses=request.getSession();
+            if(ses.getAttribute("cliente")==null){
+                response.sendRedirect("login_usr.jsp");
+            }
+            Usuarios cli=(Usuarios)ses.getAttribute("cliente");
+            AgenciaViajes obj=new AgenciaViajes();
+        %>
+       
         <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">

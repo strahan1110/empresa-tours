@@ -69,7 +69,7 @@
                                     <hr>
                                     <div class="text-center">
                                        ¿No tienes una cuenta?  <a class="small" href="registro.jsp">Regístrate</a>
-                                        <a href="login_usr.jsp"><img src="img/administrador.png" alt="administrador" height="20px"></a>
+                                        <a  href="javascript:void(0);" onclick="verificarCodigo()"><img src="img/administrador.png" alt="administrador" height="20px"></a>
                                     </div>
                    </form>
                                 </div>
@@ -93,6 +93,24 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    
+    <!--VERIFICAR-->
+    <script>
+    function verificarCodigo() {
+        // Obtener el código ingresado por el usuario
+        var codigoIngresado = prompt("Ingrese el código otorgado por la oficina administrativa de Turismo San Ramón:");
+
+        // Verificar si el código es correcto (ajusta el código permitido según sea necesario)
+        var codigoPermitido = "123456"; // Cambia esto por tu código permitido
+        if (codigoIngresado === codigoPermitido) {
+            // Código correcto, redirigir a la página permitida
+            window.location.href = "login_usr.jsp";
+        } else {
+            // Código incorrecto, mostrar mensaje de error
+            alert("Código Incorrecto");
+        }
+    }
+</script>
 
 </body>
 

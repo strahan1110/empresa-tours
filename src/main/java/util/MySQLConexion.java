@@ -8,12 +8,13 @@ public class MySQLConexion {
                 Class.forName("com.mysql.cj.jdbc.Driver"); 
 		String url = "jdbc:mysql://localhost:3306/empresatours"; 
 		String usr = "root";
-		String psw = ""; 
+		String psw = "GOLASOperu2018."; 
 		con = DriverManager.getConnection(url,usr,psw); 
 		System.out.println("conexion ok");
 		}
                 catch (ClassNotFoundException ex){
-                    System.out.println("No hay Driver!!"); } 
+                    ////System.out.println("No hay Driver!!");
+                } 
 		catch (SQLException ex) {
                     System.out.println("Error con la BD "); }
 		return con; 

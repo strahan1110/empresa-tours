@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dao.AgenciaViajes,modelo.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,7 @@
     <script src="js/bootstrapValidator.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <title>Logueo</title>
+    <title>Servicio Guardado</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,6 +28,17 @@
 </head>
 
 <body class="bg-gradient-success">
+    
+    <%
+            HttpSession ses=request.getSession();
+            if(ses.getAttribute("cliente")==null){
+                response.sendRedirect("login.jsp");
+            }
+            Clientes cli=(Clientes)ses.getAttribute("cliente");
+            String nom=cli.getApe_cli()+", "+cli.getNom_clie();
+            Tours a=(Tours)request.getAttribute("dato");
+            AgenciaViajes obj=new AgenciaViajes();
+        %>
     <div class="container">
 
         <!-- Outer Row -->
@@ -43,7 +55,8 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <a href="portada.jsp"><img src="img/volver-flecha.png" height="20px"></a>
-                                        <h1 class="h4 mb-4 text-success" >Registro exitoso!!!</h1>
+                                        <p>Salir</p>
+                                        <h1 class="h4 mb-4 text-success" >¡Registro exitoso!</h1>
                                         </div>
                                                                     
                                     <form class="user" name="fr">
@@ -59,7 +72,7 @@
                         
                     </div>
                      </fieldset>
-                                        <input type="button" value="Regresar" class="btn btn-success btn-user btn-block" onclick="location.href='portada.jsp'"><br>
+                                        <input type="button" value="Separar más tours" class="btn btn-success btn-user btn-block" onclick="history.go(-2)"><br>
                                     </form>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>portada</title>
+    <title>Registro de Servicios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -54,38 +54,38 @@
                                 <h1 class="h4 text-gray-900 mb-4">Registrar servicios</h1>
                             </div>
 	<form action="controlServicio" id="id_form" class="user">
-            <input  type="hidden" name="opc" value="1">
+            <input  type="hidden" name="opc" value="7">
             <input type="hidden" name="tour" value="<%=a.getTour_id()%>">
             <input type="hidden" name="id" value="<%=cli.getId_cli()%>">
                         
                         <div class="form-group">
                             <label>Cliente: </label>
-                            <input class="form-control form-control-user" type="text"  value="<%=nom%>" readonly>
+                            <input class="form-control form-control-user" name="nombre" type="text"  value="<%=nom%>" readonly>
 			</div>
                         
                         <div class="form-group">
                             <label>Placa del Bus</label>
-                            <input class="form-control form-control-user" type="text"  value="<%=a.getPlaca()%>" readonly>
+                            <input class="form-control form-control-user" name="placa" type="text"  value="<%=a.getPlaca()%>" readonly>
 			</div>
                         
                         <div class="form-group">
                             <label>Nombre de Guia</label>
-                            <input class="form-control form-control-user" type="text" value="<%=a.getGuia()%>" readonly>
+                            <input class="form-control form-control-user" name="guia" type="text" value="<%=a.getGuia()%>" readonly>
 			</div>
                         
                         <div class="form-group">
                             <label>Fecha de Inicio</label>
-                            <input class="form-control form-control-user" type="text"value="<%=a.getFecha_inicio()%>" readonly>
+                            <input class="form-control form-control-user" name="fechai" type="text"value="<%=a.getFecha_inicio()%>" readonly>
                         </div>
                         
                         <div class="form-group">
                             <label>Fecha de Finalización</label>
-                            <input class="form-control form-control-user" type="text" value="<%=a.getFecha_fin()%>" readonly>
+                            <input class="form-control form-control-user"  name="fechaf" type="text" value="<%=a.getFecha_fin()%>" readonly>
 			</div>
                         
                         <div class="form-group">
                             <label id="tour">Tour</label>
-                            <input class="form-control form-control-user" type="text" value="<%=a.getDescrip_tour()%>" readonly>
+                            <input class="form-control form-control-user" name="desc" type="text" value="<%=a.getDescrip_tour()%>" readonly>
 			</div>
                         
                         <label id="pago">Metodo de Pago</label><br>
