@@ -13,7 +13,7 @@ services:
   database:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: GOLASOperu2018.
+      MYSQL_ROOT_PASSWORD: "ponerclave"
       MYSQL_DATABASE: empresatours
     ports:
       - "3306:3306"
